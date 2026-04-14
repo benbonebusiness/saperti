@@ -7,7 +7,7 @@ import Toast from './components/Toast'
 import AuthPage from './pages/AuthPage'
 import HomePage from './pages/HomePage'
 import ProfilePage from './pages/ProfilePage'
-import { FavsPage, VisitedPage } from './pages/FavsPage'
+import FavsPage from './pages/FavsPage'
 import MePage from './pages/MePage'
 
 export default function App() {

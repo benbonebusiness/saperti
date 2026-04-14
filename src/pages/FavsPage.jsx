@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import { supabase } from "../lib/supabase";
 import { showToast } from "../components/Toast";
 
-export default function FavsPage({ favorites, visited, onSelectBarber }) {
-  const [activeTab, setActiveTab] = useState("favs");
+export default function FavsPage({ favorites, visited, onSelectBarber, defaultTab = "favs" }) {
+  const [activeTab, setActiveTab] = useState(defaultTab);
   const [favBarbers, setFavBarbers] = useState([]);
   const [visitedBarbers, setVisitedBarbers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -137,5 +137,15 @@ export default function FavsPage({ favorites, visited, onSelectBarber }) {
         </div>
       )}
     </div>
+  );
+}
+export function VisitedPage({ visited, onOpen }) {
+  return (
+    <FavsPage
+      favorites={new Set()}
+      visited={visited}
+      onSelectBarber={onOpen}
+      defaultTab="visited"
+    />
   );
 }
