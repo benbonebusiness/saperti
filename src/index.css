@@ -213,3 +213,9 @@ input:checked + .toggle-slider:before { transform: translateX(20px); }
 .avail-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
 .avail-dot-on { background: #43a047; }
 .avail-dot-off { background: #c0392b; }
+
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.screen { animation: fadeIn 0.25s ease; }
+.page { animation: fadeIn 0.25s ease; }
+.prof-header { animation: fadeIn 0.25s ease; }
