@@ -21,7 +21,11 @@ export default function AuthPage({ onAuth }) {
       if (error) throw error
       setMode('sent')
     } catch (e) {
-      setError(e.message)
+      if (e.message?.includes('fetch')) {
+        setError('בעיית חיבור — בדוק אינטרנט ונסה שוב')
+      } else {
+        setError(e.message)
+      }
     }
     setLoading(false)
   }
@@ -32,7 +36,7 @@ export default function AuthPage({ onAuth }) {
         <div className="logo-row">
           <BarberPoleLogo />
           <div>
-            <div className="app-name">ספר<span className="red-text">ת'י</span></div>
+            <div className="app-name" style={{ color: '#fff' }}>ספר<span className="red-text">ת'י</span></div>
             <div className="tagline">מפת הספרים של ישראל</div>
           </div>
         </div>
