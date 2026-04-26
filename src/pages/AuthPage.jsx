@@ -21,10 +21,18 @@ export default function AuthPage({ onAuth }) {
       if (error) throw error
       setMode('sent')
     } catch (e) {
-      if (e.message?.includes('fetch')) {
+      const msg = e?.message || e?.error_description || String(e) || ''
+      const isNetworkErr =
+        msg.toLowerCase().includes('fetch') ||
+        msg.toLowerCase().includes('load failed') ||
+        msg.toLowerCase().includes('network') ||
+        msg.toLowerCase().includes('failed to fetch')
+      if (isNetworkErr) {
         setError('בעיית חיבור — בדוק אינטרנט ונסה שוב')
+      } else if (msg) {
+        setError(msg)
       } else {
-        setError(e.message)
+        setError('שגיאה לא ידועה — נסה שוב')
       }
     }
     setLoading(false)
