@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { supabase } from '../lib/supabase'
+import { showToast } from '../components/Toast'
 import BarberPoleLogo from '../components/BarberPoleLogo'
 
 const COLORS = ['#2c3e50','#1a5276','#512e7a','#1e5e38','#7d3c00','#1a4a6e','#4a1a5e']
@@ -13,6 +14,7 @@ export default function HomePage({ onOpenProfile }) {
   const [search, setSearch] = useState('')
   const [maxPrice, setMaxPrice] = useState(250)
   const [loading, setLoading] = useState(true)
+  const [userLocation, setUserLocation] = useState(null)
 
   useEffect(() => { fetchBarbers() }, [])
 
@@ -21,6 +23,22 @@ export default function HomePage({ onOpenProfile }) {
     const { data } = await supabase.from('barbers').select('*').order('score', { ascending: false })
     setBarbers(data || [])
     setLoading(false)
+  }
+
+  function handleLocation() {
+    if (!navigator.geolocation) {
+      showToast('הדפדפן לא תומך במיקום')
+      return
+    }
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        setUserLocation({ lat: pos.coords.latitude, lng: pos.coords.longitude })
+        showToast('📍 המיקום זוהה')
+      },
+      () => {
+        showToast('לא ניתן לגשת למיקום')
+      }
+    )
   }
 
   const filtered = barbers.filter(b => {
@@ -48,7 +66,7 @@ export default function HomePage({ onOpenProfile }) {
             </svg>
             <input placeholder="חפש לפי שם, שכונה..." value={search} onChange={e => setSearch(e.target.value)} />
           </div>
-          <button className="loc-btn">
+          <button className="loc-btn" onClick={handleLocation}>
             <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="#1a1a1a" strokeWidth="2.2">
               <circle cx="8" cy="7" r="2.5"/>
               <path d="M8 1C5 1 2.5 3.5 2.5 7c0 4.5 5.5 8 5.5 8s5.5-3.5 5.5-8C13.5 3.5 11 1 8 1z"/>
