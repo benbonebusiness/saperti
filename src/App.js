@@ -65,7 +65,7 @@ export default function App() {
           <Toast />
   {page === 'home' && <HomePage onOpenProfile={openProfile} user={user} />}
                                                {page === 'favs' && <FavsPage favorites={favs} visited={visited} onSelectBarber={openProfile} />}
-                                                {page === 'visited' && <VisitedPage visited={visited} onSelectBarber={openProfile} />}
+                                                 {page === 'visited' && <VisitedPage visited={visited} onOpen={openProfile} />}
                                                  {page === 'me' && (user ? <MePage user={user} favs={favs} visited={visited} onSignOut={signOut} /> : <AuthPage onAuth={setUser} />)}
                                                  {page === 'profile' && profileId && (
                                                            <ProfilePage barberId={profileId} onBack={() => navigate(prevPage || 'home')}
