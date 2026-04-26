@@ -179,3 +179,37 @@ body {
 .toggle-slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background: #fff; border-radius: 50%; transition: 0.3s; }
 input:checked + .toggle-slider { background: #1a6e1a; }
 input:checked + .toggle-slider:before { transform: translateX(20px); }
+
+/* ===== .page ===== */
+.page { flex: 1; display: flex; flex-direction: column; overflow-y: auto; padding-bottom: 72px; background: #f0f0f0; min-height: 100dvh; }
+
+/* ===== form inputs ===== */
+.form-lbl { display: block; font-size: 13px; font-weight: 600; color: #444; margin-bottom: 6px; width: 100%; text-align: right; }
+.form-input { width: 100%; padding: 12px 14px; border: 1.5px solid #ddd; border-radius: 10px; font-size: 15px; font-family: 'Open Sans', sans-serif; background: #fafafa; color: #1a1a1a; outline: none; transition: border-color 0.18s; margin-bottom: 16px; direction: rtl; }
+.form-input:focus { border-color: #1a5ea8; background: #fff; }
+
+/* ===== FAVS PAGE ===== */
+.favs-page { display: flex; flex-direction: column; background: #f0f0f0; min-height: 100dvh; padding-bottom: 80px; }
+.favs-tabs { display: flex; background: #fff; border-bottom: 2px solid #eee; position: sticky; top: 0; z-index: 10; }
+.favs-tab { flex: 1; padding: 14px 0; text-align: center; font-family: 'Secular One', sans-serif; font-size: 15px; color: #888; cursor: pointer; border-bottom: 3px solid transparent; background: none; border-top: none; border-left: none; border-right: none; transition: color 0.18s, border-color 0.18s; }
+.favs-tab.active, .favs-tab:hover { color: #c0392b; border-bottom-color: #c0392b; }
+.favs-list { display: flex; flex-direction: column; gap: 10px; padding: 16px 12px; }
+.favs-card { display: flex; align-items: center; gap: 12px; background: #fff; border-radius: 14px; padding: 14px; cursor: pointer; box-shadow: 0 1px 6px rgba(0,0,0,0.07); transition: transform 0.14s, box-shadow 0.14s; }
+.favs-card:hover { transform: translateY(-2px); box-shadow: 0 4px 14px rgba(0,0,0,0.11); }
+.favs-card-photo { width: 54px; height: 54px; border-radius: 50%; object-fit: cover; background: #eee; flex-shrink: 0; }
+.favs-card-info { flex: 1; display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.favs-card-name { font-family: 'Secular One', sans-serif; font-size: 16px; color: #1a1a1a; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.favs-card-area { font-size: 13px; color: #888; }
+.favs-card-score { font-size: 13px; color: #c0392b; font-weight: 600; }
+.favs-card-arrow { color: #bbb; font-size: 18px; flex-shrink: 0; }
+.favs-empty { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 64px 24px; gap: 12px; color: #aaa; text-align: center; }
+.favs-empty-icon { font-size: 48px; line-height: 1; }
+.favs-loading { display: flex; justify-content: center; align-items: center; padding: 48px; color: #aaa; font-size: 14px; }
+
+/* ===== AVAIL BADGE ===== */
+.avail-badge { display: inline-flex; align-items: center; gap: 5px; padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; font-family: 'Open Sans', sans-serif; }
+.avail-on { background: #e8f5e9; color: #2e7d32; }
+.avail-off { background: #fce4ec; color: #c0392b; }
+.avail-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.avail-dot-on { background: #43a047; }
+.avail-dot-off { background: #c0392b; }
