@@ -42,7 +42,8 @@ export default function HomePage({ onOpenProfile }) {
   }
 
   const filtered = barbers.filter(b => {
-    const matchPrice = !b.max_price || b.max_price <= maxPrice
+    const noLimit = maxPrice >= 250
+    const matchPrice = noLimit || !b.max_price || b.max_price <= maxPrice
     const matchSearch = !search || b.name?.includes(search) || b.area?.includes(search)
     return matchPrice && matchSearch
   })
@@ -76,12 +77,12 @@ export default function HomePage({ onOpenProfile }) {
         </div>
         <div className="price-label">
           <span>עד כמה אתה מוכן לשלם?</span>
-          <span className="price-val">עד {maxPrice}₪</span>
+          <span className="price-val">{maxPrice >= 250 ? 'ללא הגבלה' : 'עד ' + maxPrice + '₪'}</span>
         </div>
         <div className="range-wrap">
           <span className="range-ends">0</span>
           <input type="range" min="20" max="250" value={maxPrice} step="5" onChange={e => setMaxPrice(+e.target.value)} />
-          <span className="range-ends">250₪</span>
+          <span className="range-ends">250+</span>
         </div>
       </div>
       <div className="sec-lbl">הכי מדורגים באזורך</div>
@@ -105,7 +106,7 @@ export default function HomePage({ onOpenProfile }) {
                   </div>
                   <div style={{ textAlign: 'left', flexShrink: 0 }}>
                     <div className="score-big"><span style={{ color: '#c0392b' }}>★</span>{b.score?.toFixed(1) || '—'}</div>
-                    <div className="rev-cnt">{b.review_count || 0} ביק׳</div>
+                    <div className="rev-cnt">{b.review_count || 0} ביקח</div>
                     {i < 3 && <div className={`rank-tag rank-${i+1}`}>{rankLabel[i+1]}</div>}
                   </div>
                 </div>
